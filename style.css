@@ -1,0 +1,71 @@
+/* Modern Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #0f0e17;
+    color: #fffffe;
+    line-height: 1.6;
+}
+
+header {
+    background: #e53170;
+    text-align: center;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.featured {
+    background: #1e1e2e;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.game-card {
+    background: #2e2e3e;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 6px;
+    border-left: 4px solid #e53170;
+}
+
+.game-card h3 {
+    color: #ff8906;
+    margin-bottom: 0.5rem;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: #121221;
+    margin-top: 2rem;
+}
+
+footer a {
+    color: #e53170;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
