@@ -1,57 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>About Me! </title>
-        <!-- Your custom CSS (optional) -->
-        <link rel="stylesheet" href="style.css?v=753269f">
-        <!-- Shoelace -->
-    
-        <link
-        rel="stylesheet"
-        media="(prefers-color-scheme:light)"
-        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css"
-      />
-      <link
-        rel="stylesheet"
-        media="(prefers-color-scheme:dark)"
-        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/dark.css"
-        onload="document.documentElement.classList.add('sl-theme-dark');"
-      />
-      <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
-    <!-- Fonts -->
-    
-      
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
-    
-      <!-- Components -->
-    
-      <script type="module" src="/components/maitnence.js"></script>
-    
-      <script type="module" src="/components/navbar.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me</title>
 
-      <script type="module" src="/components/footer.js"></script>
+  <!-- Tailwind CSS via CDN -->
 
-    
-    </head>
-<body>
+  <script>
+    tailwind.config = {
+      darkMode: 'class', // enable toggling dark mode by adding class 'dark'
+      theme: {
+        extend: {
+          fontFamily: {
+            lato: ['Lato', 'sans-serif'],
+          },
+          colors: {
+            primaryLight: '#e0e7ff',
+            primaryDark: '#1f2937',
+            textLight: '#111827',
+            textDark: '#f9fafb',
+          },
+        },
+      },
+    };
+  </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 
-    <my-navbar></my-navbar>
-    
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 
-          <main>
+  <!-- HTMX -->
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js" integrity="sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm" crossorigin="anonymous"></script>
+
+  <!-- Your Components -->
+  <script type="module" src="/components/maitnence.js"></script>
+  <script type="module" src="/components/navbar.js"></script>
+  <script type="module" src="/components/footer.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white font-lato">
+
+  <my-navbar></my-navbar>
+
+  <main class="p-4 max-w-4xl mx-auto">
+    <maintenance-mode></maintenance-mode>
+  </main>
+
+  <my-footer></my-footer>
 
 
-                <maintenance-mode></maintenance-mode>
-              
-            </main>
-           
-        </body>
-        <my-footer></my-footer>
 
-    </body>
-    </html>
+</body>
+</html>
