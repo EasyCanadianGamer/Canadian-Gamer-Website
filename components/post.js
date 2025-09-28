@@ -30,7 +30,7 @@ class AdminPostForm extends HTMLElement {
     const IMAGE_BASE = "https://nextcloud.canadian-gamer.com/remote.php/webdav/cgsite/Posts/images/";
     if (file) {
       try {
-        const uploadRes = await fetch(WEBDAV_BASE + encodeURIComponent(file.name), {
+        const uploadRes = await fetch(IMAGE_BASE + encodeURIComponent(file.name), {
           method: "PUT",
           headers: {
             "Authorization": "Basic " + btoa(USER + ":" + PASSWORD),
