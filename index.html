@@ -3,114 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canadian Gamer</title>
-  
-  <link rel="apple-touch-icon" sizes="180x180" href="images/Light/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="images/Light/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/Light/favicon-16x16.png">
-  <link rel="manifest" href="images/Light/site.webmanifest">
-
-  <script>
-    // Function to update favicon and icons based on dark mode preference
-    function setFaviconBasedOnColorScheme() {
-      const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
-      // Define base path based on dark or light mode
-      const basePath = isDarkMode ? 'images/Light/' : 'images/Dark/';
-      
-      // Helper to create or update link elements
-      function updateLink(rel, type, sizes, href) {
-        let link = document.querySelector(`link[rel="${rel}"][sizes="${sizes}"]`) || document.querySelector(`link[rel="${rel}"]`);
-        if (!link) {
-          link = document.createElement('link');
-          link.rel = rel;
-          if (type) link.type = type;
-          if (sizes) link.sizes = sizes;
-          document.head.appendChild(link);
-        }
-        link.href = href;
-      }
-      
-      updateLink('apple-touch-icon', null, '180x180', basePath + 'apple-touch-icon.png');
-      updateLink('icon', 'image/png', '32x32', basePath + 'favicon-32x32.png');
-      updateLink('icon', 'image/png', '16x16', basePath + 'favicon-16x16.png');
-      updateLink('manifest', null, null, basePath + 'site.webmanifest');
-    }
-    
-    // Run once on load
-    setFaviconBasedOnColorScheme();
-
-    // Optional: Listen for changes in color scheme (e.g. user switches system theme without reloading)
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      setFaviconBasedOnColorScheme();
-    });
-  </script>
-  <!-- Tailwind CSS via CDN -->
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class', // enable toggling dark mode by adding class 'dark'
-      theme: {
-        extend: {
-          fontFamily: {
-            lato: ['Lato', 'sans-serif'],
-          },
-          colors: {
-            primaryLight: '#e0e7ff',
-            primaryDark: '#1f2937',
-            textLight: '#111827',
-            textDark: '#f9fafb',
-          },
-        },
-      },
-    };
-  </script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- HTMX -->
-  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js" integrity="sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm" crossorigin="anonymous"></script>
-
-  <!-- Your Components -->
-  <script type="module" src="/components/maitnence.js"></script>
-  <script type="module" src="/components/navbar.js"></script>
-  <script type="module" src="/components/footer.js"></script>
+  <title>MySpace-Inspired Site</title>
+  <!-- Tailwind CSS (CDN for now) -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white font-lato">
 
-  <!-- Navbar -->
-  <my-navbar></my-navbar>
+<body class="bg-gray-100 font-sans">
 
-  <main class="max-w-6xl mx-auto p-6">
+  <!-- Wrapper grid -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-6 max-w-6xl mx-auto">
+    <!-- Left column (profile/sidebar) -->
+    <aside class="md:col-span-1">
+      <div class="bg-white border-2 border-gray-300 p-4 space-y-6">
+        
+        <!-- Profile -->
+        <div class="text-center">
+          <img src="/assets/images/pfp.png" alt="Profile Picture" class="rounded-lg w-full mb-2">
+          <h2 class="text-xl font-bold">CanadianGamer</h2>
+        </div>
 
-    <!-- Greeting -->
-    <section class="mb-6">
-      <h1 class="text-3xl font-bold">Welcome to Canadian Gamer</h1>
-    </section>
+        <!-- Bio -->
+        <div>
+          <h3 class="font-bold mb-2 border-b pb-1">About Me</h3>
+          <p class="text-sm">
+            Hey I like gaming, creating content, and sharing my interests in new tech
+            and my other hobbies ...
+          </p>
+          <a href="about.html" class="text-blue-600 underline text-sm">View More</a>
+        </div>
 
-    <!-- Latest Videos -->
-    <section class="mb-8">
+        <!-- Music Player -->
+        <div>
+          <h3 class="font-bold mb-2 border-b pb-1">Fav Music</h3>
+          <audio controls class="w-full">
+            <source src="assets/music/Vanoss Crew - Team 6 Rap (Family Mix Edit).mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
 
+        <!-- Links/Nav -->
+        <div>
+          <h3 class="font-bold mb-2 border-b pb-1">Links</h3>
+          <ul class="space-y-1">
+            <li><a href="index.html" class="text-blue-600 underline">Home</a></li>
+            <li><a href="about.html" class="text-blue-600 underline">About</a></li>
+            <li><a href="videos.html" class="text-blue-600 underline">Videos</a></li>
+            <li><a href="gallery.html" class="text-blue-600 underline">Gallery</a></li>
+          </ul>
+        </div>
 
-    </section>
+      </div>
+    </aside>
 
-    <!-- Latest Blogs -->
-    <section class="mb-8">
+    <!-- Right column (main content) -->
+    <main class="md:col-span-2 bg-white p-6 border-2 border-gray-400">
+      <h1 class="text-2xl font-bold mb-4">Welcome to My Page</h1>
+      <p>This is where your main content will go — videos, blog posts, updates, etc.</p>
+    </main>
 
-    </section>
+  </div>
 
-    <!-- Maintenance Mode -->
-    <maintenance-mode></maintenance-mode>
-
-  </main>
-
-  <!-- Footer -->
-  <my-footer></my-footer>
+<script src="/components/theme.js"></script>
 
 </body>
 </html>

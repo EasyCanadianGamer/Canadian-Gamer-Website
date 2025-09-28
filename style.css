@@ -1,153 +1,30 @@
-/* ===============================
-   🧼 1. Reset & Base Styles
-================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+/* Custom themes using Tailwind's layer system */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Default (white theme) */
+  body[data-theme='white'] {
+    @apply bg-gray-100 text-gray-900;
   }
-  
-  body {
-    line-height: 1.6;
-    background-color: var(--sl-color-neutral-0);
-    color: var(--sl-color-neutral-900);
+  body[data-theme='white'] main {
+    @apply bg-white border-gray-300;
   }
-  
-  /* ===============================
-     🎨 2. Theme Support (Light/Dark)
-  ================================== */
-  [data-theme='dark'] body {
-    background-color: var(--sl-color-neutral-900);
-    color: var(--sl-color-neutral-0);
+
+  /* Blue theme */
+  body[data-theme='blue'] {
+    @apply bg-blue-100 text-blue-900;
   }
-  
-  [data-theme='light'] body {
-    background-color: var(--sl-color-neutral-0);
-    color: var(--sl-color-neutral-900);
+  body[data-theme='blue'] main {
+    @apply bg-blue-50 border-blue-400;
   }
-  
-  /* ===============================
-     🎭 3. Typography Utilities
-  ================================== */
-  .lato-thin { font-weight: 100; }
-  .lato-light { font-weight: 300; }
-  .lato-regular { font-weight: 400; }
-  .lato-bold { font-weight: 700; }
-  .lato-black { font-weight: 900; }
-  
-  .lato-thin-italic { font-weight: 100; font-style: italic; }
-  .lato-light-italic { font-weight: 300; font-style: italic; }
-  .lato-regular-italic { font-weight: 400; font-style: italic; }
-  .lato-bold-italic { font-weight: 700; font-style: italic; }
-  .lato-black-italic { font-weight: 900; font-style: italic; }
-  
-  /* ===============================
-     🔼 4. Layout Utilities
-  ================================== */
-  .left {
-    position: absolute;
-    left: 0;
-    width: 300px;
-    padding: 10px;
+
+  /* Black theme (dark mode style) */
+  body[data-theme='black'] {
+    @apply bg-gray-900 text-gray-100;
   }
-  
-  .right {
-    position: absolute;
-    right: 0;
-    width: 300px;
-    padding: 10px;
+  body[data-theme='black'] main {
+    @apply bg-gray-800 border-gray-700;
   }
-  
-  main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-  
-  /* ===============================
-     🔧 5. Component: Header
-  ================================== */
-  header {
-    text-align: center;
-    padding: 2rem;
-    margin-bottom: 2rem;
-  }
-  
-  /* .header-bg {
-    background: linear-gradient(90deg, rgba(4, 2, 52, 1) 0%, rgba(17, 9, 121, 1) 50%, rgba(173, 0, 255, 1) 100%);
-    text-align: center;
-    padding: 2rem;
-    margin-bottom: 2rem;
-  } */
-  
-  header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  header p {
-    font-size: 1.2rem;
-    opacity: 0.9;
-  }
-  
-  /* ===============================
-     ⚠️ 6. Component: Maintenance Banner
-  ================================== */
-  #maintenance {
-    background: transparent;
-    text-align: center;
-  }
-  
-  /* ===============================
-     📍 7. Component: Navbar
-  ================================== */
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: var(--sl-color-primary-50);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  [data-theme='dark'] .navbar {
-    background-color: var(--sl-color-neutral-800);
-  }
-  
-  .navbar .logo {
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-  
-  .navbar .nav-links sl-button::part(base) {
-    margin-left: 1rem;
-  }
-  
-  /* Active link styling */
-  .navbar sl-button.active::part(base) {
-    font-weight: bold;
-    border-bottom: 2px solid var(--sl-color-primary-600);
-  }
-  
-  /* ===============================
-     ⬇️ 8. Component: Footer
-  ================================== */
-  footer {
-    text-align: center;
-    padding: 1.5rem;
-    background-color: var(--sl-color-primary-50);
-    margin-top: 2rem;
-  }
-  
-  footer a {
-    color: #b7c2f2;
-    text-decoration: none;
-  }
-  
-  footer a:hover {
-    text-decoration: underline;
-  }
-  
+}
