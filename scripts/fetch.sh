@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Go to your project directory (adjust as needed)
-cd /path/to/your/project
+cd /var/www/canadian-gamer.com/html
 
 echo "📥 Pulling latest code from GitHub..."
 git pull origin main
