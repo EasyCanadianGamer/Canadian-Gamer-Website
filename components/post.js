@@ -24,7 +24,7 @@ class AdminPostForm extends HTMLElement {
     let imageUrl = "";
 
     // WebDAV settings
-    const WEBDAV_BASE = "https://nextcloud.canadian-gamer.com/remote.php/webdav/Posts/";
+    const WEBDAV_BASE = "https://nextcloud.canadian-gamer.com/remote.php/webdav/cgsite/Posts/";
     const USER = "CanadianGamer";
     const PASSWORD = "NCBeta2023!";
 
@@ -44,7 +44,7 @@ class AdminPostForm extends HTMLElement {
         }
 
         // Set the public URL to the uploaded file
-        imageUrl = `https://nextcloud.canadian-gamer.com/remote.php/webdav/Posts/${encodeURIComponent(file.name)}`;
+        imageUrl = `https://nextcloud.canadian-gamer.com/remote.php/webdav/cgsite/Posts/${encodeURIComponent(file.name)}`;
       } catch (err) {
         console.error(err);
         alert("Error uploading image. See console.");
