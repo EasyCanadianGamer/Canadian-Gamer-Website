@@ -1,0 +1,9 @@
+# Ignore all images in the assets folder
+assets/images/
+
+# Ignore any uploaded audio
+assets/audio/
+
+# Ignore logs, temp files, etc.
+*.log
+*.tmp

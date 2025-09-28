@@ -29,9 +29,9 @@
 
     <!-- Music Player -->
     <div>
-      <h3 class="font-bold mb-2 border-b pb-1">Fav Music</h3>
+      <h3 class="font-bold mb-2 border-b pb-1">Featured Music</h3>
       <audio controls class="w-full">
-        <source src="music/song.mp3" type="audio/mp3">
+        <source src="assets/audio/featured.mp3" type="audio/mp3">
         Your browser does not support the audio element.
       </audio>
     </div>
@@ -65,31 +65,58 @@
   <h1 class="text-2xl font-bold mb-4">Gallery</h1>
 
   <!-- Gallery Grid -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    <!-- Example Image Card -->
-    <div class="border rounded-lg overflow-hidden shadow-sm">
-      <img src="gallery/image1.jpg" alt="Gallery Image 1" class="w-full h-48 object-cover">
-      <div class="p-2">
-        <h3 class="font-semibold">Image Title 1</h3>
-        <p class="text-sm text-gray-600">Short description here...</p>
-      </div>
-    </div>
-
-    <div class="border rounded-lg overflow-hidden shadow-sm">
-      <img src="gallery/image2.jpg" alt="Gallery Image 2" class="w-full h-48 object-cover">
-      <div class="p-2">
-        <h3 class="font-semibold">Image Title 2</h3>
-        <p class="text-sm text-gray-600">Short description here...</p>
-      </div>
-    </div>
-
-    <!-- Add more images the same way -->
-  </div>
+<!-- Gallery Grid -->
+<div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+  <!-- Dynamic content will be injected here -->
+</div>
 </main>
 
 
   </div>
   <script src="/components/theme.js"></script>
-
+  <script>
+    async function loadGallery() {
+      try {
+        const res = await fetch('view_posts.php');
+        const posts = await res.json();
+    
+        const galleryGrid = document.getElementById('gallery-grid');
+        galleryGrid.innerHTML = ''; // clear existing content
+    
+        posts.forEach(post => {
+          const card = document.createElement('div');
+          card.className = 'border rounded-lg overflow-hidden shadow-sm';
+    
+          const img = document.createElement('img');
+          img.src = 'assets/images/' + post.image || 'assets/images/placeholder.jpg'; // fallback
+          img.alt = post.title;
+          img.className = 'w-full h-48 object-cover';
+          card.appendChild(img);
+    
+          const info = document.createElement('div');
+          info.className = 'p-2';
+    
+          const title = document.createElement('h3');
+          title.className = 'font-semibold';
+          title.textContent = post.title;
+          info.appendChild(title);
+    
+          const desc = document.createElement('p');
+          desc.className = 'text-sm text-gray-600';
+          desc.textContent = post.description;
+          info.appendChild(desc);
+    
+          card.appendChild(info);
+          galleryGrid.appendChild(card);
+        });
+      } catch (err) {
+        console.error('Failed to load gallery:', err);
+      }
+    }
+    
+    // Load gallery on page load
+    window.addEventListener('DOMContentLoaded', loadGallery);
+    </script>
+    
 </body>
 </html>
