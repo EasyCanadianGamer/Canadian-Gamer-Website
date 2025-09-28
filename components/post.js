@@ -1,17 +1,31 @@
-class AdminPostForm extends HTMLElement {
+class AdminContentManager extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <div class="border p-4 rounded-md">
-        <h2 class="font-semibold mb-2">Add a New Post</h2>
-        <input id="post-text" type="text" placeholder="Write something..." class="w-full border px-2 py-1 rounded mb-2">
-        <input id="post-image" type="file" accept="image/*" class="w-full border px-2 py-1 rounded mb-2">
-        <button id="post-btn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Add Post</button>
+      <div class="space-y-6">
+
+        <!-- Add Post Section -->
+        <div class="border p-4 rounded-md">
+          <h2 class="font-semibold mb-2">Add a New Post</h2>
+          <input id="post-text" type="text" placeholder="Write something..." class="w-full border px-2 py-1 rounded mb-2">
+          <input id="post-image" type="file" accept="image/*" class="w-full border px-2 py-1 rounded mb-2">
+          <button id="post-btn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Add Post</button>
+        </div>
+
+        <!-- Featured Audio Section -->
+        <div class="border p-4 rounded-md">
+          <h2 class="font-semibold mb-2">Update Featured Music</h2>
+          <input id="audio-file" type="file" accept="audio/*" class="w-full border px-2 py-1 rounded mb-2">
+          <button id="audio-btn" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Upload New Audio</button>
+        </div>
+
       </div>
     `;
 
     this.querySelector("#post-btn").addEventListener("click", () => this.addPost());
+    this.querySelector("#audio-btn").addEventListener("click", () => this.uploadAudio());
   }
 
+  // --- POSTS ---
   async addPost() {
     const text = this.querySelector("#post-text").value;
     const file = this.querySelector("#post-image").files[0];
@@ -23,75 +37,48 @@ class AdminPostForm extends HTMLElement {
 
     let imageUrl = "";
 
-    // WebDAV settings
-    const WEBDAV_BASE = "https://nextcloud.canadian-gamer.com/remote.php/webdav/cgsite/Posts/";
-    const USER = "CanadianGamer";
-    const PASSWORD = "NCBeta2023!";
-    const IMAGE_BASE = "https://nextcloud.canadian-gamer.com/remote.php/webdav/cgsite/Posts/images/";
     if (file) {
-      try {
-        const uploadRes = await fetch(IMAGE_BASE + encodeURIComponent(file.name), {
-          method: "PUT",
-          headers: {
-            "Authorization": "Basic " + btoa(USER + ":" + PASSWORD),
-          },
-          body: file
-        });
+      // For simplicity, you can use PHP backend like before for storing post images
+      const formData = new FormData();
+      formData.append("image", file);
+      formData.append("text", text);
 
-        if (!uploadRes.ok) {
-          alert("Failed to upload image: " + uploadRes.status);
-          return;
-        }
-
-        // Set the public URL to the uploaded file
-        imageUrl = IMAGE_BASE + encodeURIComponent(file.name);
-      } catch (err) {
-        console.error(err);
-        alert("Error uploading image. See console.");
+      const res = await fetch("upload_post.php", { method: "POST", body: formData });
+      const data = await res.json();
+      if (data.status === "success") {
+        imageUrl = data.imageUrl;
+      } else {
+        alert("Failed to upload image: " + data.message);
         return;
       }
     }
 
-    // Fetch current posts
-    const postsUrl = WEBDAV_BASE + "posts.json";
-    let posts = [];
-    try {
-      const res = await fetch(postsUrl, {
-        headers: { "Authorization": "Basic " + btoa(USER + ":" + PASSWORD) }
-      });
-      if (res.ok) posts = await res.json();
-    } catch {}
+    // Here you can also store posts.json via PHP or DB
+    alert("Post added!"); 
+    this.querySelector("#post-text").value = "";
+    this.querySelector("#post-image").value = "";
+  }
 
-    // Add new post
-    posts.push({
-      text,
-      image: imageUrl,
-      timestamp: new Date().toISOString()
-    });
+  // --- FEATURED AUDIO ---
+  async uploadAudio() {
+    const file = this.querySelector("#audio-file").files[0];
+    if (!file) {
+      alert("Please select an audio file.");
+      return;
+    }
 
-    // Save updated posts
-    try {
-      const putRes = await fetch(postsUrl, {
-        method: "PUT",
-        headers: {
-          "Authorization": "Basic " + btoa(USER + ":" + PASSWORD),
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(posts, null, 2)
-      });
+    const formData = new FormData();
+    formData.append("audio", file);
 
-      if (putRes.ok) {
-        alert("Post added!");
-        this.querySelector("#post-text").value = "";
-        this.querySelector("#post-image").value = "";
-      } else {
-        alert("Failed to add post: " + putRes.status);
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Error saving post. See console.");
+    const res = await fetch('audio.php', { method: "POST", body: formData });
+    const data = await res.json();
+    if (data.status === "success") {
+      alert("Featured audio updated!");
+      this.querySelector("#audio-file").value = "";
+    } else {
+      alert("Failed to upload audio: " + data.message);
     }
   }
 }
 
-customElements.define("admin-post-form", AdminPostForm);
+customElements.define("admin-content-manager", AdminContentManager);
