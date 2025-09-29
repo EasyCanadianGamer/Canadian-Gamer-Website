@@ -4,6 +4,9 @@ assets/images/
 # Ignore any uploaded audio
 assets/audio/
 
+*.db
+*.db-shm
+*.db-wal
 # Ignore logs, temp files, etc.
 *.log
 *.tmp
