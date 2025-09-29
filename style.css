@@ -1,30 +1,9 @@
-/* Custom themes using Tailwind's layer system */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.scrolling-text {
+  display: inline-block;
+  animation: scroll-text 15s linear infinite;
+}
 
-@layer base {
-  /* Default (white theme) */
-  body[data-theme='white'] {
-    @apply bg-gray-100 text-gray-900;
-  }
-  body[data-theme='white'] main {
-    @apply bg-white border-gray-300;
-  }
-
-  /* Blue theme */
-  body[data-theme='blue'] {
-    @apply bg-blue-100 text-blue-900;
-  }
-  body[data-theme='blue'] main {
-    @apply bg-blue-50 border-blue-400;
-  }
-
-  /* Black theme (dark mode style) */
-  body[data-theme='black'] {
-    @apply bg-gray-900 text-gray-100;
-  }
-  body[data-theme='black'] main {
-    @apply bg-gray-800 border-gray-700;
-  }
+@keyframes scroll-text {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }

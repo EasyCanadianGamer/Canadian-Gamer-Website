@@ -1,0 +1,42 @@
+/* white.css */
+body {
+  background-color: #f3f4f6; /* bg-gray-100 */
+  color: #111827; /* text-gray-900 */
+  font-family: sans-serif;
+}
+
+main {
+  background-color: #ffffff; /* bg-white */
+  border: 2px solid #cbd5e1; /* border-gray-400 */
+  color: black;
+  padding: 1.5rem; /* p-6 */
+  border-radius: 0.5rem; /* rounded */
+}
+
+#sidebar {
+  background-color: #ffffff;
+  border: 2px solid #cbd5e1;
+  color: black;
+  padding: 1rem; /* p-4 */
+  border-radius: 0.5rem;
+  gap: 1.5rem; /* space-y-6 approximation */
+}
+
+#sidebar a {
+  color: #111827;
+  text-decoration: underline;
+}
+
+.retro-footer {
+  background-color: #ffffff; /* background */
+  color: #111827; /* text */
+  border: 2px solid #cbd5e1; /* border */
+}
+
+.retro-footer-link a {
+  color: #111827; /* link */
+}
+
+.retro-footer-marquee {
+  color: #6b7280; /* marquee text */
+}
