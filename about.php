@@ -34,6 +34,9 @@ $pfp = $pfpUrl;
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="themes/blue.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="alternate" type="application/rss+xml" 
+      title="Canadian Gamer RSS Feed" 
+      href="https://www.canadian-gamer.com/rss.php">
 
 </head>
 <script type="module" src= "/components/footer.js"> </script>

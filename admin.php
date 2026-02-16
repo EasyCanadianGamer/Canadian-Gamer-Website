@@ -29,8 +29,11 @@ $pfp = $pfpUrl;
   <title>Admin Dashboard</title>
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="themes/black.css">
+  <link rel="stylesheet" href="themes/blue.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="alternate" type="application/rss+xml" 
+      title="Canadian Gamer RSS Feed" 
+      href="https://www.canadian-gamer.com/rss.php">
 
 </head>
 
@@ -64,8 +67,15 @@ $pfp = $pfpUrl;
           <ul class="space-y-1">
             <li><a href="index.php" class="text-blue-600 underline">View Site</a></li>
             <li><a href="admin.php" class="text-blue-600 underline">Dashboard</a></li>
-            <li><a href="videos.php" class="text-blue-600 underline">Videos</a></li>
-            <li><a href="gallery.php" class="text-blue-600 underline">Gallery</a></li>
+        <li><a href="about.php" class="text-blue-600 underline">About</a></li>
+        <li><a href="videos.php" class="text-blue-600 underline">Videos</a></li>
+        <li><a href="gallery.php" class="text-blue-600 underline">Gallery</a></li>
+        <li><a href="blogs.php" class="text-blue-600 underline">Writings</a></li>
+        <li><a href = "live.php" class="text-blue-600 underline" > Live Streams </a></li>
+        <li><a href = "write_blogs.php" class="text-blue-600 underline" > Write Blogs </a></li>
+        <li><a href = "edit_blogs.php" class="text-blue-600 underline" > Manage Blogs </a></li>
+
+
           </ul>
         </div>
       </div>

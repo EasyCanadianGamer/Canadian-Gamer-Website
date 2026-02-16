@@ -35,6 +35,9 @@ $pfp = $pfpUrl;
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="themes/blue.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="alternate" type="application/rss+xml" 
+      title="Canadian Gamer RSS Feed" 
+      href="https://www.canadian-gamer.com/rss.php">
 
 </head>
 <script type="module" src= "/components/footer.js"> </script>
@@ -92,6 +95,8 @@ $pfp = $pfpUrl;
         <li><a href="about.php" class="text-blue-600 underline">About</a></li>
         <li><a href="videos.php" class="text-blue-600 underline">Videos</a></li>
         <li><a href="gallery.php" class="text-blue-600 underline">Gallery</a></li>
+        <li><a href="blogs.php" class="text-blue-600 underline">Writings</a></li>
+        <li><a href = "live.php" class="text-blue-600 underline" > Live Streams </a></li>
       </ul>
     </div>
 
@@ -100,13 +105,101 @@ $pfp = $pfpUrl;
 
 
     <!-- Right column (main content) -->
-    <main class="md:col-span-2 p-6 ">
-      <h1 class="text-2xl font-bold mb-4">Welcome to My Page</h1>
-      <p>This is where your main content will go — videos, blog posts, updates, etc.</p>
+    <main class="md:col-span-2 p-6 space-y-6">
+      <header>
+        <p class="text-sm uppercase tracking-wide text-gray-500">Latest from the blog</p>
+        <h1 class="text-3xl font-bold">What I'm writing about right now</h1>
+        <p class="text-gray-600 mt-2">Fresh takes, game dev notes, and anything else that has my attention this week.</p>
+      </header>
+
+      <section id="home-blog-cards" class="grid gap-4 sm:grid-cols-2">
+        <article class="border rounded-lg p-4 bg-white shadow-sm animate-pulse">
+          <div class="h-4 bg-gray-200 rounded w-2/3 mb-3"></div>
+          <div class="space-y-2">
+            <div class="h-3 bg-gray-200 rounded"></div>
+            <div class="h-3 bg-gray-100 rounded"></div>
+            <div class="h-3 w-1/2 bg-gray-100 rounded"></div>
+          </div>
+        </article>
+        <article class="border rounded-lg p-4 bg-white shadow-sm hidden sm:block animate-pulse">
+          <div class="h-4 bg-gray-200 rounded w-2/3 mb-3"></div>
+          <div class="space-y-2">
+            <div class="h-3 bg-gray-200 rounded"></div>
+            <div class="h-3 bg-gray-100 rounded"></div>
+            <div class="h-3 w-1/2 bg-gray-100 rounded"></div>
+          </div>
+        </article>
+      </section>
+
+      <div class="text-right">
+        <a href="blogs.php" class="text-blue-600 font-semibold hover:underline">See all posts →</a>
+      </div>
     </main>
 
   </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('home-blog-cards');
+  if (!container) return;
+
+  fetch('get_blogs.php')
+    .then(res => res.json())
+    .then(blogs => {
+      if (!Array.isArray(blogs) || blogs.length === 0) {
+        container.innerHTML = `
+          <article class="border rounded-lg p-4 bg-gray-50 shadow-sm">
+            <h2 class="text-xl font-semibold mb-2">Nothing posted yet</h2>
+            <p class="text-gray-600">I'm still drafting the first few entries. Check back soon or jump over to the full blog page for updates.</p>
+          </article>
+        `;
+        return;
+      }
+
+      container.innerHTML = '';
+      blogs.slice(0, 4).forEach(blog => {
+        const card = document.createElement('article');
+        card.className = 'border rounded-lg p-4 bg-white shadow-sm flex flex-col cursor-pointer hover:border-blue-500 transition';
+        card.innerHTML = `
+          <h2 class="text-xl font-semibold mb-2">${escapeHtml(blog.title)}</h2>
+          <p class="text-gray-600 flex-grow">${truncate(blog.content, 140)}</p>
+          <p class="text-xs text-gray-500 mt-4">Posted ${formatDate(blog.created_at)}</p>
+        `;
+        card.addEventListener('click', () => {
+          window.location.href = 'blog-template.php?id=' + blog.id;
+        });
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      console.error('Failed to load blogs', err);
+      container.innerHTML = `
+        <article class="border rounded-lg p-4 bg-red-50 text-red-700">
+          <h2 class="text-lg font-semibold mb-1">Something went wrong</h2>
+          <p>Couldn't load the latest posts right now. You can still browse everything on the blog page.</p>
+        </article>
+      `;
+    });
+});
+
+function truncate(html, maxLength) {
+  const div = document.createElement('div');
+  div.innerHTML = html;
+  const text = div.innerText.trim();
+  return text.length > maxLength ? text.slice(0, maxLength) + '…' : text;
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return isNaN(date) ? 'just now' : date.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.innerText = str ?? '';
+  return div.innerHTML;
+}
+</script>
 
 </body>
 <my-footer></my-footer>

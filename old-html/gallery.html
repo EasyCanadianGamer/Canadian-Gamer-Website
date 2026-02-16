@@ -10,7 +10,9 @@
 
 </head>
 <body >
-
+  location /uploads/{
+    alias /var/www/cgsite/uploads/; 
+   }
   <!-- Wrapper grid -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-6 max-w-6xl mx-auto">
     <aside class="md:col-span-1">

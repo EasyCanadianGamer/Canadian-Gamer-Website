@@ -23,6 +23,21 @@ foreach ($extensions as $ext) {
 }
 
 $pfp = $pfpUrl;
+
+// Twitch embed configuration
+$twitchChannel = 'canadian_gamer23'; // Update to your actual Twitch channel
+$twitchParents = ['www.canadian-gamer.com', 'canadian-gamer.com'];
+if (!empty($_SERVER['HTTP_HOST'])) {
+    $twitchParents[] = $_SERVER['HTTP_HOST'];
+}
+$twitchParents = array_values(array_unique(array_filter($twitchParents)));
+$parentParams = [];
+foreach ($twitchParents as $parent) {
+    $parentParams[] = 'parent=' . rawurlencode($parent);
+}
+$parentParamsString = implode('&', $parentParams);
+$playerSrc = 'https://player.twitch.tv/?channel=' . rawurlencode($twitchChannel) . '&muted=false&' . $parentParamsString;
+$chatSrc = 'https://www.twitch.tv/embed/' . rawurlencode($twitchChannel) . '/chat?darkpopout&' . $parentParamsString;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +49,9 @@ $pfp = $pfpUrl;
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="themes/blue.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="alternate" type="application/rss+xml" 
+      title="Canadian Gamer RSS Feed" 
+      href="https://www.canadian-gamer.com/rss.php">
 
 </head>
 <script type="module" src= "/components/footer.js"> </script>
@@ -98,9 +116,37 @@ $pfp = $pfpUrl;
 
 
     <!-- Right column (main content) -->
-    <main class="md:col-span-2 p-6 ">
-      <h1 class="text-2xl font-bold mb-4">Welcome to My Page</h1>
-      <p>This is where your main content will go — videos, blog posts, updates, etc.</p>
+    <main class="md:col-span-2 p-6 space-y-4">
+      <h1 class="text-2xl font-bold">Live on Twitch</h1>
+      <p>Catch the stream and hang out with chat right here without leaving the site.</p>
+
+      <div class="grid gap-4 lg:grid-cols-3">
+        <section class="lg:col-span-2 border rounded-xl p-4 bg-white/40 backdrop-blur">
+          <h2 class="text-xl font-semibold mb-2">Stream</h2>
+          <div class="relative w-full overflow-hidden rounded-lg" style="padding-top: 56.25%;">
+            <iframe
+              src="<?= htmlspecialchars($playerSrc, ENT_QUOTES) ?>"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              title="Twitch Live Stream"
+              class="absolute inset-0 h-full w-full">
+            </iframe>
+          </div>
+        </section>
+
+        <section class="border rounded-xl p-4 bg-white/40 backdrop-blur">
+          <h2 class="text-xl font-semibold mb-2">Chat</h2>
+          <iframe
+            src="<?= htmlspecialchars($chatSrc, ENT_QUOTES) ?>"
+            frameborder="0"
+            scrolling="yes"
+            title="Twitch Chat"
+            class="w-full rounded-lg"
+            style="height: 600px;">
+          </iframe>
+        </section>
+      </div>
     </main>
 
   </div>
