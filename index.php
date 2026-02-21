@@ -75,13 +75,13 @@ $pfp = $pfpUrl;
               <!-- Artist - Song title - Album -->
 
   <h4 class="scrolling-text whitespace-nowrap inline-block">
-    Lil Tecca - Dark Thoughts - Dopamine
+    Drake - Dark Lane Demo Tapes - Time Flies
   </h4>
 </div>
       <!-- audio -->
 
       <audio controls loop  class="w-full">
-    <source src="<?php echo $featured_music; ?>" type="audio/mp3">
+    <source src="<?php echo $featured_music; ?>" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
 
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('home-blog-cards');
   if (!container) return;
 
-  fetch('get_blogs.php')
+  fetch('/get_blogs.php')
     .then(res => res.json())
     .then(blogs => {
       if (!Array.isArray(blogs) || blogs.length === 0) {
