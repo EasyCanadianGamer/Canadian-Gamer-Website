@@ -6,7 +6,7 @@ $pfpDir = $_SERVER['DOCUMENT_ROOT'] . '/assets/images/';
 $extensions = ['png', 'jpg', 'jpeg', 'gif'];
 
 // Default PFP URL if none found
-$pfpUrl = 'https://www.canadian-gamer.com/assets/images/default-pfp.png';
+$pfpUrl = 'https://canadian-gamer.com/assets/images/default-pfp.png';
 
 // Find the first matching PFP file
 foreach ($extensions as $ext) {
@@ -14,7 +14,7 @@ foreach ($extensions as $ext) {
     if (!empty($files)) {
         // Use the first match
         $pfpFile = basename($files[0]);
-        $pfpUrl = 'https://www.canadian-gamer.com/assets/images/' . $pfpFile;
+        $pfpUrl = 'https://canadian-gamer.com/assets/images/' . $pfpFile;
         break;
     }
 }
@@ -33,7 +33,7 @@ $pfp = $pfpUrl;
   <link rel="stylesheet" href="style.css">
   <link rel="alternate" type="application/rss+xml" 
       title="Canadian Gamer RSS Feed" 
-      href="https://www.canadian-gamer.com/rss.php">
+      href="https://canadian-gamer.com/rss.php">
 
 </head>
 

@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="alternate" type="application/rss+xml" 
       title="Canadian Gamer RSS Feed" 
-      href="https://www.canadian-gamer.com/rss.php">
+      href="https://canadian-gamer.com/rss.php">
 
 </head>
 

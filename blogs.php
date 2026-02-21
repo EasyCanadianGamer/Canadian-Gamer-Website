@@ -1,16 +1,16 @@
 <?php
 // Dynamic MP3 file
-$featured_music = "https://www.canadian-gamer.com/assets/audio/featured.mp3";
+$featured_music = "https://canadian-gamer.com/assets/audio/featured.mp3";
 
 // Directory where profile pictures are stored
 $pfpDir = $_SERVER['DOCUMENT_ROOT'] . '/assets/images/';
 $extensions = ['png', 'jpg', 'jpeg', 'gif'];
-$pfpUrl = 'https://www.canadian-gamer.com/assets/images/default-pfp.png';
+$pfpUrl = 'https://canadian-gamer.com/assets/images/default-pfp.png';
 foreach ($extensions as $ext) {
     $files = glob($pfpDir . 'pfp.' . $ext);
     if (!empty($files)) {
         $pfpFile = basename($files[0]);
-        $pfpUrl = 'https://www.canadian-gamer.com/assets/images/' . $pfpFile;
+        $pfpUrl = 'https://canadian-gamer.com/assets/images/' . $pfpFile;
         break;
     }
 }
@@ -27,7 +27,7 @@ $pfp = $pfpUrl;
   <link rel="stylesheet" href="/themes/blue.css">
   <link rel="alternate" type="application/rss+xml" 
       title="Canadian Gamer RSS Feed" 
-      href="https://www.canadian-gamer.com/rss.php">
+      href="https://canadian-gamer.com/rss.php">
 
 </head>
 
