@@ -30,6 +30,7 @@ $pfp = $pfpUrl;
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="ocs-site-verification" content="abcc53d898a15be57469b7a1e48798f1" />
   <title>CG-Home</title>
   <!-- Tailwind CSS (CDN for now) -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -38,6 +39,7 @@ $pfp = $pfpUrl;
   <link rel="alternate" type="application/rss+xml" 
       title="Canadian Gamer RSS Feed" 
       href="https://canadian-gamer.com/rss.php">
+      
 
 </head>
 <script type="module" src= "/components/footer.js"> </script>
