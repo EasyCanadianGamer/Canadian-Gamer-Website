@@ -30,6 +30,7 @@ $pfp = $pfpUrl;
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/images/favicon.png" type="image/png">
   <meta name="ocs-site-verification" content="abcc53d898a15be57469b7a1e48798f1" />
   <title>CG-Home</title>
   <!-- Tailwind CSS (CDN for now) -->
